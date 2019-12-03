@@ -20,3 +20,11 @@
 .App-link {
   color: #09d3ac;
 }
+
+.high-balance{
+  color:green
+}
+
+.low-balance{
+  color:red
+}
