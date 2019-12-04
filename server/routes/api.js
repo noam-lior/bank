@@ -27,7 +27,6 @@ router.get('/transactions/:category', async (req, res) => {
     const category = req.params.category
     const startDate = Object.keys(req.query).length ? moment(req.query.startDate) : null
     const endDate = Object.keys(req.query).length ? moment(req.query.endDate) : null
-    console.log(startDate)
     let conditions = {}
 
     if (category !== "all")

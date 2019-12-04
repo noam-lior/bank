@@ -13,8 +13,17 @@ class App extends Component {
       transactions: [],
       categories: { all: 1, a: 1 },
       currentCategory: "all",
-      filteredData:[]
+      filteredData: []
     }
+  }
+
+  formatDate = (date) => {
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    month = month >= 10 ? month : "0" + month
+    day = day >= 10 ? day : "0" + day
+    console.log(date.getFullYear() + "-" + month + "-" + day)
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   }
 
   componentDidMount = async () => {
@@ -30,7 +39,7 @@ class App extends Component {
     const newBalance = this.state.balance + parseInt(data.amount)
     await axios.post('http://localhost:8990/transaction', data)
     let newTransactions = await axios.get('http://localhost:8990/transactions')
-    newTransactions=newTransactions.data
+    newTransactions = newTransactions.data
     const newCategories = { ...this.state.categories }
     if (newCategories[data.category])
       newCategories[data]++
@@ -46,9 +55,9 @@ class App extends Component {
 
   removeTransaction = async (transaction) => {
     const newBalance = this.state.balance - transaction.amount
-    await axios.delete('http://localhost:8990/transaction', {data:{transaction}})
+    await axios.delete('http://localhost:8990/transaction', { data: { transaction } })
     const response = await axios.get('http://localhost:8990/transactions')
-    const newTransactions=response.data
+    const newTransactions = response.data
     const newCategories = { ...this.state.categories }
     if (newCategories[transaction.category] > 0)
       newCategories[transaction.category]--
@@ -75,11 +84,11 @@ class App extends Component {
     const response = await axios.get(`http://localhost:8990${path}`)
     console.log(response.data)
     this.setState({
-      filteredData:response.data
+      filteredData: response.data
     })
-  } 
+  }
 
-   render() {
+  render() {
     return (
       <Router>
         <div id='app'>
@@ -94,10 +103,15 @@ class App extends Component {
               balance={this.state.balance}
               transactions={this.state.transactions}
               removeTransaction={this.removeTransaction}
+              formatDate={this.formatDate}
               handleFilter={this.handleFilter}
             />}>
           </Route>
-          <Route path='/' exact render={() => <Operations balance={this.state.balance} addTransaction={this.addTransaction} />}></Route>
+          <Route path='/' exact render={() => <Operations
+            balance={this.state.balance}
+            addTransaction={this.addTransaction}
+            formatDate={this.formatDate}
+          />}></Route>
           <Route path={`/transactions/:category`}
             exact render={({ match, location }) => <TransactionByCategory
               removeTransaction={this.removeTransaction}

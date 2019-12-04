@@ -16,13 +16,8 @@ class Transactions extends Component {
         }
     }
 
-    formatDate = (date) => {
-        let month = date.getMonth() + 1
-        let day = date.getDate()
-        month = month >= 10 ? month : "0" + month
-        day = day >= 10 ? day : "0" + day
-        console.log(date.getFullYear() + "-" + month + "-" + day)
-        return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    formatDate=(date)=>{
+        return this.props.formatDate(date)
     }
 
     handleStartDateChange = newDate => {
@@ -36,7 +31,7 @@ class Transactions extends Component {
     handleEndDateChange = newDate => {
         const formattedDate=this.formatDate(newDate)
         this.setState({
-            endDate: formatted,
+            endDate: formattedDate,
             path: `/transactions/${this.state.currentCategory}?startDate=${this.state.startDate}&endDate=${formattedDate}`
         })
     }
@@ -57,7 +52,6 @@ class Transactions extends Component {
         // transactions = currentCategory==="all"?transactions:transactions.filter(t=>t.category===currentCategory)
         const categories = this.props.categories
         const categoriesArray = Object.entries(categories)
-
         return (
             <div id="transactions-super-container">
                 <div id="filter-container">

@@ -62,12 +62,17 @@ class Operations extends Component {
         })
         return !error
     }
+
+    formatData=(date)=>{
+       return this.props.formatData(date)
+    }
     handleDateChange = newDate => {
-        this.setState({ date: newDate })
+        this.setState({ date: this.formatDate(newDate) })
     }
     render() {
         return (
             <div id="operations-container">
+                
                 <div id="input-container">
                     <span>Amount:</span><input id='amount-input' value={this.state.amount} onChange={this.handleChange}></input>
                     <span>Vendor:</span><input id='vendor-input' value={this.state.vendor} onChange={this.handleChange}></input>
@@ -79,6 +84,7 @@ class Operations extends Component {
                             <DatePicker id="date-input" value={this.state.date} onChange={this.handleDateChange} />
                         </MuiPickersUtilsProvider>
                     </div>
+                    
                     <div id="button-container">
                         <Button id='deposit' variant="contained" onClick={this.handleClick}>Deposit</Button>
                         <Button id='withdraw' variant="contained" onClick={this.handleClick}>Withdraw</Button>
