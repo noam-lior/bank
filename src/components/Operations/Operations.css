@@ -1,0 +1,100 @@
+body{
+    background-image: url('./background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat
+    
+}
+
+#input-container{
+    
+    width:70vw;
+    height:40vh;
+    display:grid;
+    justify-content: center;
+    align-items:center;
+    grid-template-areas:
+    "al a vl v"
+    "cl c . d" 
+    ". . . .";
+    grid-template-rows:3fr 3fr 2fr;
+    grid-template-columns:1fr 2fr 1fr 2fr;
+    border-radius: 20px;
+    background-color:#517AA8;
+    color:white;
+    font-weight:bold;
+    margin-top:5vh;
+}
+
+span{
+    justify-self: center;
+}
+input{
+    height:30px;
+    width:150px;
+    border-radius:10px;
+    text-align:center;
+    margin:10px;
+}
+#amount-input{
+    grid-area:"a"
+}
+
+#value-input{
+    grid-area:"v"
+}
+
+#category-input{
+    grid-area:"c"
+}
+
+#date-input{
+    margin-left:12px;
+    margin-top:-5px;
+    height:25px
+}
+
+#button-container>button{
+    margin-top:-20px;
+    padding:0px;
+    width:100px
+}
+
+.MuiFormControl-root{
+    grid-area:"d";
+    background-color:white;
+    width:150px;
+    border-radius:10px;
+    display:flex;
+    text-align: center;
+    
+}
+
+#button-container{
+    display:flex;
+    flex-direction: row;
+    grid-row:3/3;
+    grid-column:1/5;
+    justify-content: center;
+    align-items:top;
+}
+button{
+    height:8vh;
+}
+
+#deposit{
+    background-color:green;
+    grid-row:3/3;
+    grid-column:2/2;
+    width:100px;
+    margin-right:10px
+}
+
+#withdraw{
+    background-color:red;
+    grid-row:3/3;
+    grid-column:3/3;
+    margin-left:10px;
+    
+
+    
+}

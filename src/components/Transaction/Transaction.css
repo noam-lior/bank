@@ -1,8 +1,28 @@
+body{
+    font-size:20px;
+    font-weight:bold;
+}
 .deposit{
-    background-color:green
+    color:black;
+    background-color:rgba(0,128,0,0.9);
 }
 
 .withdrawal{
-    background-color:red
+    background-color:rgba(255,0,0,0.9);
 }
 
+
+tr>td{
+    padding:0px;
+    margin:0px;
+    text-align:center
+}
+
+td>button>span{
+    height:20px;
+    font-size:12px;
+}
+
+td>.MuiButtonBase-root{
+    padding:0px
+}
